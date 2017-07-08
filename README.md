@@ -2,8 +2,8 @@
 Plugin for jquery. 
 [Plugin's page](https://tj-s.ru/tod/tj-gallery.html)
 
-![TJ Gallery](https://tj-s.ru/images/articles/img_blog.jpg)
-[Demo1](https://tj-s.ru/demo/tjgallery/img.html)
+![TJ Gallery](https://tj-s.ru/images/articles/img_blog.jpg)<br />
+[Demo1](https://tj-s.ru/demo/tjgallery/img.html)<br />
 [Demo2](https://tj-s.ru/demo/tjgallery/div.html)
 
 ### Installation
@@ -40,30 +40,24 @@ $(document).ready(function(){
 ```
 
 ## Options
-**selector**
-type: string
-Default: 'img'
+**selector**<br />
+type: string<br />
+Default: 'img'<br /><br />
+Block selector<br /><br />
 
-Block selector
+**row_min_height**<br />
+type: integer<br />
+Default: 180<br /><br />
+Min height for block's line<br /><br />
 
-
-**row_min_height**
-type: integer
-Default: 180
-
-Min height for block's line
-
-
-**margin**
-type: integer
-Default: 5
-
-Margin between blocks
-
+**margin**<br />
+type: integer<br />
+Default: 5<br /><br />
+Margin between blocks<br /><br />
 
 ## Methods
-**clear**
-clear grid
+**clear**<br />
+clear grid<br /><br />
 
-**destroy**
-destroy grid
+**destroy**<br />
+destroy grid<br />
