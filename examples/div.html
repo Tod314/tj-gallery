@@ -6,26 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="../src/jquery-tjgallery.min.js"></script>
-    <script>
-        $(function() {
-			
-			// waiting for loading page
-			$(window).on('load', function(){
-				$('.pictures').tjGallery({
-					selector: '.item',
-					margin: 10
-				});
-			})
-			
-			// call desrtoy
-			$('#destroy').click(function(){
-				$('.pictures').tjGallery('destroy');
-				$('#destroy').hide();
-			});
-			
-			
-        })
-    </script>
 	<style>
 		body{
 			margin: 0px;
@@ -80,53 +60,71 @@
 	</style>
 </head>
 <body>
-<button id="destroy">destroy</button>
-<button id="build" style="display:none;">build</button>
+	<button id="destroy">destroy</button>
+	<button id="build" style="display:none;">build</button>
 
-<div class="pictures">
-    <div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_1.jpg" alt="" /></div>
-    <div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_2.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_3.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_4.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_5.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_6.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_7.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_8.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_9.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_10.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_11.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_12.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_13.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_14.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_15.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_16.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_17.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_18.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_19.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_20.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_21.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_22.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_23.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_24.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_25.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_26.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_27.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_28.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_29.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_30.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_31.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_32.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_33.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_34.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_35.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_36.jpg" alt="" /></div>	
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_37.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_38.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_39.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_40.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_41.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_42.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_43.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_44.jpg" alt="" /></div>
-	<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_45.jpg" alt="" /></div>
-</div>
+	<div class="pictures">
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_1.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_2.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_3.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_4.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_5.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_6.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_7.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_8.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_9.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_10.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_11.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_12.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_13.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_14.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_15.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_16.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_17.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_18.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_19.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_20.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_21.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_22.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_23.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_24.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_25.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_26.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_27.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_28.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_29.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_30.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_31.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_32.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_33.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_34.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_35.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_36.jpg" alt="" /></div>	
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_37.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_38.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_39.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_40.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_41.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_42.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_43.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_44.jpg" alt="" /></div>
+		<div class="item"><div class="item_description"><span>Lorem Ipsum is simply dummy text</span></div><img src="images/i_45.jpg" alt="" /></div>
+	</div>
+
+	<script>
+		// waiting for loading page
+		$(window).on('load', function(){
+			$('.pictures').tjGallery({
+				selector: '.item',
+				margin: 10
+			});
+		})
+		
+		// call desrtoy
+		$('#destroy').click(function(){
+			$('.pictures').tjGallery('destroy');
+			$('#destroy').hide();
+		});
+    </script>
+</body>
+</html>

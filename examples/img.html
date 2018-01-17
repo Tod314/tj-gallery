@@ -6,76 +6,76 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="../src/jquery-tjgallery.js"></script>
-    <script>
-        $(function() {
-			
-			// waiting for loading page
-			$(window).on('load', function(){
-				$('.pictures').tjGallery();
-			})
-			
-			// call desrtoy
-			$('#destroy').click(function(){
-				$('.pictures').tjGallery('clear');
-				$('#build').show();
-			});
-			
-			// reinit after destroy
-			$('#build').click(function(){
-				$('.pictures').tjGallery();
-			})
-			
-        })
-    </script>
 </head>
 <body>
-<button id="destroy">destroy</button>
-<button id="build" style="display:none;">build</button>
+	<button id="destroy">destroy</button>
+	<button id="build" style="display:none;">build</button>
 
-<div class="pictures">
-    <img src="images/i_1.jpg" alt="" />
-    <img src="images/i_2.jpg" alt="" />
-	<img src="images/i_3.jpg" alt="" />
-	<img src="images/i_4.jpg" alt="" />
-	<img src="images/i_5.jpg" alt="" />
-	<img src="images/i_6.jpg" alt="" />
-	<img src="images/i_7.jpg" alt="" />
-	<img src="images/i_8.jpg" alt="" />
-	<img src="images/i_9.jpg" alt="" />
-	<img src="images/i_10.jpg" alt="" />
-	<img src="images/i_11.jpg" alt="" />
-	<img src="images/i_12.jpg" alt="" />
-	<img src="images/i_13.jpg" alt="" />
-	<img src="images/i_14.jpg" alt="" />
-	<img src="images/i_15.jpg" alt="" />
-	<img src="images/i_16.jpg" alt="" />
-	<img src="images/i_17.jpg" alt="" />
-	<img src="images/i_18.jpg" alt="" />
-	<img src="images/i_19.jpg" alt="" />
-	<img src="images/i_20.jpg" alt="" />
-	<img src="images/i_21.jpg" alt="" />
-	<img src="images/i_22.jpg" alt="" />
-	<img src="images/i_23.jpg" alt="" />
-	<img src="images/i_24.jpg" alt="" />
-	<img src="images/i_25.jpg" alt="" />
-	<img src="images/i_26.jpg" alt="" />
-	<img src="images/i_27.jpg" alt="" />
-	<img src="images/i_28.jpg" alt="" />
-	<img src="images/i_29.jpg" alt="" />
-	<img src="images/i_30.jpg" alt="" />
-	<img src="images/i_31.jpg" alt="" />
-	<img src="images/i_32.jpg" alt="" />
-	<img src="images/i_33.jpg" alt="" />
-	<img src="images/i_34.jpg" alt="" />
-	<img src="images/i_35.jpg" alt="" />
-	<img src="images/i_36.jpg" alt="" />	
-	<img src="images/i_37.jpg" alt="" />
-	<img src="images/i_38.jpg" alt="" />
-	<img src="images/i_39.jpg" alt="" />
-	<img src="images/i_40.jpg" alt="" />
-	<img src="images/i_41.jpg" alt="" />
-	<img src="images/i_42.jpg" alt="" />
-	<img src="images/i_43.jpg" alt="" />
-	<img src="images/i_44.jpg" alt="" />
-	<img src="images/i_45.jpg" alt="" />
-</div>
+	<div class="pictures">
+		<img src="images/i_1.jpg" alt="" />
+		<img src="images/i_2.jpg" alt="" />
+		<img src="images/i_3.jpg" alt="" />
+		<img src="images/i_4.jpg" alt="" />
+		<img src="images/i_5.jpg" alt="" />
+		<img src="images/i_6.jpg" alt="" />
+		<img src="images/i_7.jpg" alt="" />
+		<img src="images/i_8.jpg" alt="" />
+		<img src="images/i_9.jpg" alt="" />
+		<img src="images/i_10.jpg" alt="" />
+		<img src="images/i_11.jpg" alt="" />
+		<img src="images/i_12.jpg" alt="" />
+		<img src="images/i_13.jpg" alt="" />
+		<img src="images/i_14.jpg" alt="" />
+		<img src="images/i_15.jpg" alt="" />
+		<img src="images/i_16.jpg" alt="" />
+		<img src="images/i_17.jpg" alt="" />
+		<img src="images/i_18.jpg" alt="" />
+		<img src="images/i_19.jpg" alt="" />
+		<img src="images/i_20.jpg" alt="" />
+		<img src="images/i_21.jpg" alt="" />
+		<img src="images/i_22.jpg" alt="" />
+		<img src="images/i_23.jpg" alt="" />
+		<img src="images/i_24.jpg" alt="" />
+		<img src="images/i_25.jpg" alt="" />
+		<img src="images/i_26.jpg" alt="" />
+		<img src="images/i_27.jpg" alt="" />
+		<img src="images/i_28.jpg" alt="" />
+		<img src="images/i_29.jpg" alt="" />
+		<img src="images/i_30.jpg" alt="" />
+		<img src="images/i_31.jpg" alt="" />
+		<img src="images/i_32.jpg" alt="" />
+		<img src="images/i_33.jpg" alt="" />
+		<img src="images/i_34.jpg" alt="" />
+		<img src="images/i_35.jpg" alt="" />
+		<img src="images/i_36.jpg" alt="" />	
+		<img src="images/i_37.jpg" alt="" />
+		<img src="images/i_38.jpg" alt="" />
+		<img src="images/i_39.jpg" alt="" />
+		<img src="images/i_40.jpg" alt="" />
+		<img src="images/i_41.jpg" alt="" />
+		<img src="images/i_42.jpg" alt="" />
+		<img src="images/i_43.jpg" alt="" />
+		<img src="images/i_44.jpg" alt="" />
+		<img src="images/i_45.jpg" alt="" />
+	</div>
+
+	
+	<script>
+		// waiting for loading page
+		$(window).on('load', function(){
+			$('.pictures').tjGallery();
+		})
+		
+		// call desrtoy
+		$('#destroy').click(function(){
+			$('.pictures').tjGallery('clear');
+			$('#build').show();
+		});
+		
+		// reinit after destroy
+		$('#build').click(function(){
+			$('.pictures').tjGallery();
+		})
+    </script>
+</body>
+</html>
