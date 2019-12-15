@@ -1,5 +1,5 @@
 /*!
- * tjGallery 0.9
+ * tjGallery 1.1
  * http://tj-s.ru
  *
  * description	JQuery Plugin create responsive gallery grid
@@ -91,20 +91,22 @@
 							last_bucket.items.push(item);
 						});
 						
-						buckets.push(last_bucket);
-						last_bucket.last = true;
+						if (last_bucket.items.length == 1 && buckets[buckets.length-1].items.length > 1){
+							buckets[buckets.length-1].items.push(last_bucket.items[0]);
+						}else{
+							buckets.push(last_bucket);
+							last_bucket.last = true;
+						}
 
 						$.each(buckets, function(idx, bucket) {
-							if (!bucket.last) {
-								bucket.scale = (max_bucket_width - (bucket.items.length - 1) * $settings.margin) / getWidthForBucket(bucket.items);
-							}
+							bucket.scale = (max_bucket_width - (bucket.items.length - 1) * $settings.margin) / getWidthForBucket(bucket.items);
 							var $last_item;
 							
 							var n = 0;
 							$.each(bucket.items, function(idx2, item) {
 								if (bucket.scale) {
-									item.width = Math.round(item.width * bucket.scale);
-									item.height = Math.round(item.height * bucket.scale);
+									item.width = Math.floor(item.width * bucket.scale);
+									item.height = Math.floor(item.height * bucket.scale);
 								}
 								item.index = n;
 								var pic = item.pic,
@@ -131,29 +133,12 @@
 									});
 								}
 							});
-							
-							if (($last_item)) {								
-								var old_w = $last_item.width;
-								$last_item.width = $last_item.width + max_bucket_width - getWidthForBucket(bucket.items);
-								
-								
-								if (((($last_item.width - old_w) < 40) && bucket.last) || (!bucket.last)){
-									
-									$last_item.pic.css({
-										width: $last_item.width + 'px'
-									});
-									$last_item.container.css({
-										width: $last_item.width+"px",
-									});
-								}
-							}
 						});
 					});
 				}
 				function getWidthForBucket(bucket, extra){
 					var width = 0;
 					if (bucket.length) {
-						width = $settings.margin * (bucket.length - 1);
 						$.each(bucket, function(idx, item) {
 							width += item.width;
 						});
