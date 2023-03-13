@@ -1,5 +1,5 @@
 /*!
- * tjGallery 1.1
+ * tjGallery 1.2
  * http://tj-s.ru
  *
  * description	JQuery Plugin create responsive gallery grid
@@ -10,177 +10,207 @@
  *			}
  *
  * @copyright	Tod, tod@tj-s.ru
+ * thanks Aleksandr Protasenya
+ *
  * @license		MIT License
+ *
+ * Date: 2023-03-13
  */
 
-(function($) {
-	var methods = {
-		init : function(options) {
-			var $settings = $.extend({
-				selector		:'img',
-				row_min_height	: 180,
-				margin			: 5
-			}, options);
+(function ($) {
 
-			
-			return this.each(function() {
-				var $this = $(this),
-					data = $this.data('tjGallery');
-				
-				if ( ! data ) {
-					$this.data('tjGallery', {
-						target		: $this,
-						tjGallery	: $settings,
-					});
-				}
-				$(window).bind('resize.tjGallery', responding);
-				
-				return build($this);
-				
-				
-				function responding(){
-					methods.clear.apply($this);
-					build($this);
-				}
-				
-				function build(items){
-					return items.each(function() {
-						var $container = $(this);
-						var max_bucket_width = $container.width();
-						var buckets = [],
-							last_bucket = {
-								items: [],
-								width: 0,
-								height: 0
-							};
-						$container.find($settings.selector).each(function() {
-							var $this = $(this);
-							var $pic = $this;
+	const pluginName = 'tjGallery';
 
+	function init(options) {
 
-							if ($pic[0].nodeName.toUpperCase() != 'IMG') {
-								$pic = $pic.find('img');
-								$this = $('<div class="tjGalleryItem">').insertBefore($this).append($this);
-							} else {
-								$this = $('<div class="tjGalleryItem">').insertBefore($pic).append($pic);
-							}
-							if (!$pic.length) return;
-
-							$this.css({width: 'auto', float: 'left', position: 'relative'});
-							
-							var item = {
-								pic: $pic,
-								container: $this,
-								original_height:  $pic.attr('height') || $pic.height(),
-								original_width: $pic.attr('width') || $pic.width()
-							};
-							item.aspect = item.original_width / item.original_height;
-							item.scale = $settings.row_min_height / item.original_height;				
-							item.width = item.original_width * item.scale;
-							item.height = item.original_height * item.scale;
-							
-							var new_bucket_width = getWidthForBucket(last_bucket.items, item);
-							if (new_bucket_width > max_bucket_width) {
-								buckets.push(last_bucket);
-								last_bucket = {
-									items: [],
-									width: 0,
-									height: 0
-								};
-							}
-							last_bucket.items.push(item);
-						});
-						
-						if (last_bucket.items.length == 1 && buckets[buckets.length-1].items.length > 1){
-							buckets[buckets.length-1].items.push(last_bucket.items[0]);
-						}else{
-							buckets.push(last_bucket);
-							last_bucket.last = true;
-						}
-
-						$.each(buckets, function(idx, bucket) {
-							bucket.scale = (max_bucket_width - (bucket.items.length - 1) * $settings.margin) / getWidthForBucket(bucket.items);
-							var $last_item;
-							
-							var n = 0;
-							$.each(bucket.items, function(idx2, item) {
-								if (bucket.scale) {
-									item.width = Math.floor(item.width * bucket.scale);
-									item.height = Math.floor(item.height * bucket.scale);
-								}
-								item.index = n;
-								var pic = item.pic,
-									container = item.container;
-								$last_item = item;							
-								n++;
-
-								pic.css({
-									height: parseInt(item.height)+"px",
-									width: parseInt(item.width)+"px"
-								});
-								item.container.css({
-									height: parseInt(item.height)+"px",
-									width: parseInt(item.width)+"px",
-									marginTop: $settings.margin + 'px'
-								});
-								if (idx2 > 0) {
-									item.container.css({
-										marginLeft: $settings.margin + 'px'
-									});
-								} else {
-									item.container.css({
-										clear: 'left'
-									});
-								}
-							});
-						});
-					});
-				}
-				function getWidthForBucket(bucket, extra){
-					var width = 0;
-					if (bucket.length) {
-						$.each(bucket, function(idx, item) {
-							width += item.width;
-						});
-					}
-					if (extra) {
-						width += extra.width;
-					}
-					return width;
-				}
-				
-			})			
-		},
-		clear: function(){
-			conteiner = this;
-            data = conteiner.data('tjGallery');
-			conteiner.each(function() {
-				$(this).find(data.tjGallery.selector).each(function() {
-					if (!$(this).is('img'))
-						$(this).find('img').css({'width': 'auto', 'height': 'auto'});
-					$(this).removeAttr('style');
-					$(this).appendTo(conteiner);
-				})
-				$(this).find('div:empty').remove();
-			})
-		},
-		destroy : function() {
-			methods.clear.apply(this);
-			$(window).unbind('.tjGallery');
+		const images = this.find('img');
+		if (images.length < 2) {
+			return; // For one image, this component does not make sense
 		}
-	};
 
+		const settings = $.extend({
+			selector: 'img',
+			rowMinHeight: 180,
+			margin: 5
+		}, options);
 
-	$.fn.tjGallery = function( method ) {
-		if ( methods[method] ) {
-			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-		} else if ( typeof method === 'object' || ! method ) {
-			var that = this;
-			return methods.init.apply( this, arguments );
+		this.data(pluginName, settings);
+
+		const container = this;
+		let containerWidth = this.width();
+
+		// It is necessary to ensure that all pictures are loaded, otherwise system can't calculate result
+		let unloadedImageCount = images.length;
+		images.each(function () {
+			if (getImageSize($(this))) {
+				--unloadedImageCount;
+				if (unloadedImageCount === 0) {
+					build(container);
+				}
+			} else {
+				const test = new Image();
+				this.onload = function () {
+					--unloadedImageCount;
+					if (unloadedImageCount === 0) {
+						build(container);
+					}
+				};
+				test.src = this.src;
+			}
+		});
+
+		$(window).bind('resize.' + pluginName, function () {
+			if (container.width() === containerWidth) {
+				return; // Size does not changes
+			}
+
+			containerWidth = container.width();
+			clear(container);
+			build(container);
+		});
+	}
+
+	function build(container) {
+		const settings = container.data(pluginName);
+		const containerWidth = container.width();
+
+		container.each(function () {
+			const buckets = [];
+			let lastBucket = {
+				items: []
+			};
+
+			$(this).find(settings.selector).each(function () {
+				let $this = $(this);
+				let $pic;
+
+				if (!$this.is('img')) {
+					$pic = $this.find('img');
+					if ($pic.length === 0) {
+						return;
+					}
+					$this = $('<div class="tjGalleryItem">').insertBefore($this).append($this);
+				} else {
+					$pic = $this;
+					$this = $('<div class="tjGalleryItem">').insertBefore($pic).append($pic);
+				}
+
+				$this.css({ width: 'auto', float: 'left', position: 'relative' });
+
+				let size = getImageSize($pic);
+
+				const item = {
+					pic: $pic,
+					container: $this,
+					originalHeight: size.height,
+					originalWidth: size.width
+				};
+
+				item.aspect = item.originalWidth / item.originalHeight;
+				item.scale = settings.rowMinHeight / item.originalHeight;
+				item.width = item.originalWidth * item.scale;
+				item.height = item.originalHeight * item.scale;
+
+				const newBucketWidth = getWidthForBucket(lastBucket.items, item);
+				if (newBucketWidth > containerWidth) {
+					buckets.push(lastBucket);
+					lastBucket = {
+						items: []
+					};
+				}
+				lastBucket.items.push(item);
+			});
+
+			if (lastBucket.items.length === 1 && buckets[buckets.length - 1].items.length > 1) {
+				buckets[buckets.length - 1].items.push(lastBucket.items[0]);
+			} else {
+				buckets.push(lastBucket);
+			}
+
+			$.each(buckets,function (_, bucket) {
+					bucket.scale = (containerWidth - (bucket.items.length - 1) * settings.margin) / getWidthForBucket(bucket.items);
+
+					$.each(bucket.items,
+						function (index, item) {
+							if (bucket.scale) {
+								item.width = item.width * bucket.scale;
+								item.height = item.height * bucket.scale;
+							}
+
+							item.width = Math.trunc(item.width * 100) / 100; // Example: 1.777777 -> 1.77
+
+							item.pic.css({
+								height: item.height + 'px',
+								width: item.width + 'px'
+							});
+							item.container.css({
+								width: item.width + 'px',
+								marginBottom: settings.margin + 'px'
+							});
+							if (index > 0) {
+								item.container.css({
+									marginLeft: settings.margin + 'px'
+								});
+							} else {
+								item.container.css({
+									clear: 'left'
+								});
+							}
+						});
+				});
+		});
+	}
+
+	function clear(container) {
+		const settings = container.data(pluginName);
+		container.each(function () {
+			const $this = $(this);
+			$this.find(settings.selector).each(function () {
+				const $this = $(this);
+
+				if (!$this.is('img')) {
+					$this.find('img').css({ 'width': 'auto', 'height': 'auto' });
+				}
+				$this.removeAttr('style');
+				$this.appendTo(container);
+			});
+			$this.find('div:empty').remove();
+		});
+	}
+
+	function getWidthForBucket(bucket, extra) {
+		let width = 0;
+
+		$.each(bucket,
+			function (_, item) {
+				width += item.width;
+			});
+
+		if (extra) {
+			width += extra.width;
+		}
+
+		return width;
+	}
+
+	function getImageSize(img) {
+		let width = img.attr('width') || img.width();
+		let height = img.attr('height') || img.height();
+		if (width && height) {
+			return { width: width, height: height };
 		} else {
-			$.error( 'Method ' +  method + ' does not exist for jQuery.tjGallery' );
-		} 
-		
+			return null;
+		}
+	}
+
+	$.fn.tjGallery = function (obj) {
+		if (obj === 'destroy') {
+			clear(this);
+			this.removeData(pluginName);
+			$(window).unbind('.' + pluginName);
+		} else {
+			return init.call(this, obj);
+		}
 	};
 
 })(jQuery);
